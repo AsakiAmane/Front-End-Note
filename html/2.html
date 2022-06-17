@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2. 列表标签等</title>
+    <!-- 一般脚本放这里 -->
+    <script>
+        while (btn.alert) {
+            alert("good!");
+        }
+    </script>
+</head>
+
+<body>
+    <h1>列表</h1>
+    <!-- 列表有类型，有序无序自定义三种视环境使用，无序用于像不包含热搜的新闻情景，有序则规定好1234，剩下的考虑自定义 -->
+    <!-- 1. 无序列表，使用父标签ul表示列表整体，子标签li表示列表项list item，每项前有个点 -->
+    <h3>无序列表，一般不在ul里写列表标题，不符合规范</h3>
+    <ul>
+        <li>第一项</li>
+        <li>第二项</li>
+        <li>第三项</li>
+        <p>其他东西 ←这个也不符合规范</p>
+    </ul>
+    <p>列表外</p>
+    <!-- 2. 有序列表，只是把父标签改成ol，其实就是unordered和ordered，有序列表默认带着1.2.3. -->
+    <h3>有序列表</h3>
+    <ol>
+        <li>有序1</li>
+        <li>有序2</li>
+        <li>有序3</li>
+    </ol>
+    <!-- 3. 自定义列表，类似于点菜牌，一类菜品可以有好几个菜，自定义列表每项前没点。dl父标签，dt的t指自定义列表的主题theme（不带缩进），dd是列表项（默认有缩进，通过css调整） -->
+    <h3>自定义列表</h3>
+    <dl>
+        <dt>dt标签相当于列表名</dt>
+        <dd>列表项1</dd>
+        <dd>列表项2</dd>
+        <dd>列表项3</dd>
+    </dl>
+
+    <h1>表格</h1>
+    <!-- 表格标签table，tr代表行，td代表行内的单元格 -->
+    <!-- table属性：border边框宽度，width & height，实际开发时一般用css的设置，也属于一种分离开发 -->
+    <!-- caption表格大标题，居中显示；th表头单元格，表示一列小标题，比如数据分类“姓名班级学号”等，在单元格内居中显示，用以替换td -->
+    <!-- 表格结构标签：thead表格头，tbody表格主体，tfoot表格底部，用于包裹tr标签，但其实比较少用，只是为了让语义更加清晰 -->
+    <table border="1">
+        <caption>表格标题</caption>
+        <caption>理论上可以多个caption，但没必要</caption>
+        <!-- <thead> -->
+        <tr>
+            <th>x1</th>
+            <th>x2</th>
+            <th>x3</th>
+        </tr>
+        <!-- </thead> -->
+
+        <tbody>
+            <tr>
+                <td>11</td>
+                <td>12</td>
+            </tr>
+            <tr>
+                <td>21</td>
+                <td>22，测试有没有自动对齐</td>
+                <td>23</td>
+            </tr>
+            <!-- 合并单元格：只保留最上和最左的单元格，纵向合并rowspan，横向合并colspan，不能跨thead、tbody、tfoot -->
+            <tr>
+                <td rowspan="2">31</td>
+                <!-- 若不删除41，则会挤出 -->
+                <td>32</td>
+                <td>33</td>
+            </tr>
+            <tr>
+                <!-- <td>41</td> -->
+                <td colspan="2">42</td>
+                <!-- 同理，若不删除43，也会挤出 -->
+                <!-- <td>43</td> -->
+            </tr>
+        </tbody>
+    </table>
+
+    <h1>表单</h1>
+    <!-- 表单标签 -->
+    <h2>input标签</h2>
+    <!-- 标签属性：text文本框，password密码框，radio多选一，checkbox多选一，file上传文件，submit提交按钮，reset重置按钮，buttom默认无功能按钮，但可以配个JavaScript添加功能 -->
+    <!-- 实际上，name估计还是应该写英文 -->
+    文本框:<input type="text" name="文本框" id="text" placeholder="提示字"><br>
+    密码框:<input type="password" name="密码框" id="password" placeholder="提示字"><br>
+    <!-- 单选必须指定name，默认项加上checked -->
+    单选:<input type="radio" name="单选" id="radio" checked>1
+    <input type="radio" name="单选" id="radio">2
+    <!-- name不同，算不同的单选 -->
+    <input type="radio" name="单选3" id="radio">3<br>
+    多选:<input type="checkbox" name="" id="checkbox" checked><br>
+    <!-- multiple可以上传多个文件 -->
+    文件:<input type="file" name="" id="file" multiple><br>
+    <input type="submit" value="提交按钮">
+    <input type="reset" value="重置按钮">
+    <input type="button" value="普通按钮" id="btn">
+    <input type="range" name="range" id="range">
+    <h2>form表单:搭配input标签使用</h2>
+    <form action="">
+        文本框:<input type="text" name="文本框" id="text" placeholder="提示字"><br>
+        密码框:<input type="password" name="密码框" id="password" placeholder="提示字"><br>
+        <!-- 既可以input button，也可以直接button标签 -->
+        <button type="submit">提交</button>
+        <button type="reset">重置</button>
+    </form>
+    <h2>下拉菜单</h2>
+    <!-- select标签，选项为option，value为选中之后传的值，后面的文字为选项说明 -->
+    <select name="" id="">
+        <!-- TODO情况下name和id可以空，但其实都有实际作用 -->
+        <option value="opt1">选项一</option>
+        <option value="opt2">选项二</option>
+        <option value="opt3">选项三</option>
+    </select>
+    <h2>文本域</h2>
+    <!-- textarea标签，可通过cols和rows规定可见宽度和行数，实际开发时推荐直接css完成设置 -->
+    <textarea name="text1" id="text1" cols="30" rows="10" placeholder="提示字">缺省值？</textarea>
+    <h2>label标签</h2>
+    <!-- label标签，绑定内容与表单标签的关系 -->
+    <h3>用法1</h3>
+    <!-- 用label标记内容后给标签设置id，在for属性中设置对应的id值 -->
+    <input type="radio" name="sex" id="male"><label for="male">男</label>
+    <input type="radio" name="sex" id="female"><label for="female">女</label>
+    <h3>用法2</h3>
+    <!-- 直接label包裹表单不设id，直接删除for属性 -->
+    <label><input type="radio" name="sex">男</label>
+    <label><input type="radio" name="sex">女</label>
+    <br>
+
+    <h1>语义化标签</h1>
+    <h2>没有语义的布局标签div和span</h2>
+    <!-- div：独占一行；span：一行显示多个 -->
+    <h3>div</h3>
+    <div>独占一行</div>
+    <div>独占一行</div>
+    <h3>span</h3>
+    <span>无法独占一行，但是之间有空格</span>
+    <span>无法独占一行，但是之间有空格</span>
+    <br>
+    <h2>有语义的布局标签:移动端网页专用</h2>
+    <!-- header网页头部，nav网页导航，footer网页底部，aside网页侧边栏，section网页区块，article网页文章 -->
+
+    <h1>字符实体:在网页中显示特殊符号</h1>
+    不用字符实体的情况下:一段字 第二段字，中间的多个空格会被合并成一个空格,甚至ctrl+s都会合并<br>
+    <!-- 只用记空格&nbsp; 其他不用记 -->
+    一段话&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第二段话
+</body>
+
+</html>

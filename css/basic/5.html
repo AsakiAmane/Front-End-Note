@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 父选择器 后代选择器{} */
+        .father .child {
+            color: red;
+        }
+
+        .father>p {
+            color: red;
+        }
+
+        /* 并集选择器 */
+        .blue1,
+        .blue2 {
+            color: blue;
+        }
+
+        /* 交集选择器，标签选择器必须在前 */
+        p.box {
+            color: red;
+        }
+
+        /* hover选择器 */
+        .stop:hover {
+            background-color: gray;
+        }
+
+        .bgi {
+            width: 400px;
+            height: 400px;
+            background-image: url(FC7wWw_agAA5WIO.jpg);
+            /* 背景平铺：repeat水平垂直平铺（默认）、no-repeat、repeat-x、repeat-y */
+            background-repeat: no-repeat;
+            /* 背景图位置 background-position: x y;
+                或者left center right top center bottom
+            */
+            background-position: center;
+            background-size: 100%;
+            /* 上述可以属性连写 */
+            /* background: color image repeat position(x y) */
+        }
+
+        .rectangle {
+            width: 300px;
+            height: 300px;
+            border: 1px solid gray;
+            border-radius: 5px;
+            margin: auto;
+            /* 下面两行将文字居中 */
+            text-align: center;
+            line-height: 300px;
+            /* position: fixed; */
+            background-color: rgba(160, 180, 204, 50%);
+        }
+
+        .inlineBlock {
+            display: inline-block;
+        }
+
+        .font {
+            color: red;
+            font-size: 25px;
+            background-color: antiquewhite;
+            height: 300px;
+            /* 儿子不能继承 */
+        }
+
+        .test {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div>
+            <h1>进阶选择器</h1>
+            <hr>
+            <div>
+                <h2>1. 复合选择器</h2>
+                <div>
+                    <h3>后代选择器：空格</h3>
+                    <div>根据html的嵌套关系，选择父元素后代中满足条件的元素：
+                        选择器1 选择器2 {css}
+                    </div>
+                    <div>结果：将满足继承关系的标签装饰，父标签后代全部选中</div>
+                    <div class="father">
+                        <p class="child">位于father嵌套中的child（father的后代）</p>
+                        <div>
+                            <p class="child">孙子也会被修饰</p>
+                        </div>
+                    </div>
+                    <p class="child">这个不是father的后代</p>
+                </div>
+                <div>
+                    <h3>子代选择器：></h3>
+                    <div>只选1的儿子2：选择器1>选择器2{css}</div>
+                    <div class="father">
+                        <p>儿子的p</p>
+                        <p>另一个儿子p</p>
+                        <div>
+                            <p>孙子p</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3>并集选择器：,</h3>
+                    <div>选中多个对象进行一样的修饰：选择器1, 选择器2{css}</div>
+                    <div class="blue1">blue1类</div>
+                    <div class="blue2">blue2类</div>
+                </div>
+                <div>
+                    <h3>交集选择器：</h3>
+                    <div>指定同时满足两个选择器的某个标签进行修饰：选择器1选择器2{css}</div>
+                    <p class="box">box p</p>
+                    <p>none p</p>
+                    <div class="box">box div</div>
+                </div>
+                <div>
+                    <h2>2. hover选择器：hover</h3>
+                        <div>选择鼠标悬停的标签：选择器：hover{css}</div>
+                        <button class="stop">hover伪类</button>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div>
+            <h1>背景相关</h1>
+            <hr>
+            <div>
+                <h2>1. 背景色background-color</h2>
+                <div>默认是透明，取色代码老生常谈，留意rgba的a代表透明度</div>
+                <h2>2. 背景图片background-image</h2>
+                <div class="bgi">
+                    <div class="rectangle">
+                        这是奶子
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div>
+            <h1>元素（即标签）显示模式</h1>
+            <hr>
+            <div>显示模式：即一行几个等</div>
+            <div>元素类型：块级、行内、行内块</div>
+            <div>
+                <h2>1. 块级元素</h2>
+                独占一行（如div、hx、p、ul、li、dt、dd、form等）、宽度默认是父元素的宽度，高度默认由内容撑开、但可以设置宽高，一般作为大容器，可以嵌套（但p不要嵌套div、p、h等块级元素，a不能嵌套a标签）
+            </div>
+            <div>
+                <h2>2. 行内元素</h2>
+                <div>一行可以显示多个（a、span、b、u、i、s...），宽度高度默认由内容撑开，不可设置宽高</div>
+            </div>
+            <div>
+                <h2>3. 行内块元素</h2>
+                <div>一行可以显示多个且可设置宽高（input、textarea、button、select、img...）</div>
+            </div>
+            <div>
+                <h2>4. 显示模式的转换</h2>
+                <div>改变元素默认的显示特点使其符合布局要求</div>
+                <div>display: block 转换为块级元素 使用频繁</div>
+                <div class="inlineBlock">display: inline-block 转换为行内块元素 使用频繁</div>
+                <div class="inlineBlock">display: inline 转换为行内元素 使用极少</div>
+                <div>上面一行是两个div进行了行内块元素转换</div>
+            </div>
+        </div>
+        <hr>
+        <div>
+            <h1>css特性</h1>
+            <hr>
+            <div>
+                <h2>1. 继承性</h2>
+                <div class="font">子元素默认继承父元素样式的所有文字控制属性特点，但标签独有的属性不能
+                    <div>
+                        这个是儿子div，没能继承background-color
+                    </div>
+                    <div>
+                        无法继承的特殊情况：a标签的color无法继承父级，h系列的font-size无法继承父级
+                    </div>
+                    <a href="#">这是子级的超链接，不会继承父级的红色</a>
+                    <h6>这是子级的h6，没继承font-size</h6>
+                </div>
+            </div>
+            <div>
+                <h2>2. 层叠性</h2>
+                <div>后声明的装饰层叠前声明的装饰</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

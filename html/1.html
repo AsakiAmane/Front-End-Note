@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1. 这里是title</title>
+</head>
+
+<body>
+    <!-- 快捷键：整行复制剪切直接用windows的快捷键，ctrl+/直接整行注释，ctrl+d特殊修改 -->
+
+    <!-- hx为标题标签，x为优先级 -->
+    <h1>1级标签，下面展示的是段落标签</h1>
+    <!-- p为段落标签，不同段落自动换行 -->
+    <p>a paragraph</p>
+    <p>another paragraph</p>
+    <h2>2级标签，下面是换行br和分割线hr</h2>
+    <!-- hr分割线，br换行 -->
+    first line
+    <hr>
+    second line
+    <br>
+    third line
+    <h3>文本格式化标签</h3>
+    <!-- 文本格式化标签，同效果可以用不同标签，单字母标签方便，单词标签可强调语义 -->
+    <!-- 如果不想记可以直接用单词型标签 -->
+    <!-- b加粗，u下划线，i倾斜，s删除线 -->
+    <!-- strong，ins，em，del -->
+    <strong>strong</strong>
+    <b>b</b>
+    <ins>ins</ins>
+    <u>u</u>
+    <em>em</em>
+    <i>i</i>
+    <del>del</del>
+    <s>s</s>
+    <h4>多媒体</h4>
+    <!-- src, alt属于标签属性，src必带，alt为替换文本（图加载失败时的替代） title为悬停提示 此外还可以是width和height，若只写其中一个则会等比例缩放，两个都写才会变形，因此一般都是只写一个-->
+    <!-- 路径一般用的相对路径 -->
+    <button>
+        <img src="微信.png" alt="微信" title="微信" width="50">
+    </button>
+    <!-- audio音频标签，video视频标签，常用属性：controls显示控件，autoplay自动播放（chrome音频没法自动播，视频时可以带上muted自动播放），loop循环 -->
+    <audio src="next/ero_paizuri.ogg" controls autoplay loop></audio>
+    <video src="next/EyQul3GVgAAftar.mp4" autoplay controls muted loop></video>
+    <!-- 超链接标签a，herf后跟link，开发初期不知道link的时候可写成#，此外还可以有target属性控制目标网页的打开形式：_self为默认值直接在当前窗口跳转，_blank新建窗口跳转 -->
+    <a href="http://baidu.com" target="_blank"><button>草泥马不会百度吗</button></a>
+</body>
+
+</html>

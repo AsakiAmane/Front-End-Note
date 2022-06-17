@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .content {
+            background-color: rgb(181, 207, 181);
+            margin: 0 auto;
+        }
+
+        .indent {
+            text-indent: 2em !important;
+        }
+
+        #priority {
+            text-indent: 4em;
+        }
+
+        /* 以下是优先级部分的代码 */
+        /* 因为id优先级最高，所以直接用div #one修饰 */
+        /* 含1个ID */
+        div #one {
+            color: orange;
+        }
+
+        /* 含2个类 */
+        .father .son {
+            color: purple;
+        }
+
+        /* 一个类一个标签 */
+        .father p {
+            color: blue;
+        }
+
+        .boxDemoSpan {
+            /* width和height定义content区的宽高 */
+            width: 300px;
+            height: 100px;
+            background-color: bisque;
+            /* 边框线，连写属性：边框粗 边框样式 边框颜色 */
+            border: 1px solid black;
+            padding: 20px;
+            margin: 50px;
+        }
+
+        .boxDemoDiv {
+            box-sizing: border-box;
+            /* width和height定义content区的宽高 */
+            width: 400px;
+            height: 200px;
+            background-color: pink;
+            /* 边框线，连写属性（不分先后顺序）：边框粗 边框样式 边框颜色 */
+            /* solid: 实线 dashed：虚线 dotted：点线 */
+            /* 其他不用记 */
+            /* 若只想要某个方向的border，像border-left一样处理就行 */
+            /* 特别需要留意的是，盒子的大小是content区和border的组合，比如width+border*2+pading*2, 而margin一般不算在盒子的大小里 */
+            border: 1px solid black;
+            padding: 70px 10px 50px;
+            margin: 50px;
+        }
+
+        .margin1 {
+            margin-bottom: 50px;
+        }
+
+        .margin2 {
+            margin-top: 60px;
+        }
+
+        .marginTop {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <h1>CSS盒子模型</h1>
+        <hr>
+        <div>
+            <h2>CSS第三大特性：优先级</h2>
+            <div>
+                不同选择器具有不同优先级，优先级高的选择器样式会覆盖优先级低的选择器样式
+                <p id="priority" style="text-indent: 6em;">
+                    继承 &lt 通配符 &lt 标签 &lt类 &lt id &lt 行内样式 &lt !important
+                </p>
+                简单来说选择器可以选择的范围越广优先级则越低，比如若上面的p只有行内式生效
+                <p id="priority" class="indent">但是这个因为indent类里带!important，因此会是2位缩进</p>
+                <div>复合选择器时需要通过权重叠加计算优先级，如父子标签，需要从范围最小的样式开始比起，数量越多如子的行内多于父的行内，子就选择自己的行内</div>
+                <div class="father">父标签div
+                    <p class="son" id="one">子标签p, 因为范围最小的行内式有一个，会选择行内式的红色做修饰</p>
+                    需要注意的是：1. !important相当于王牌joker，优先级最高，一般开发慎用 2. 同优先级时比较层叠性
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div>
+            <h2>盒子模型</h2>
+            <div>
+                用以布局，每个标签都可以看作一个盒子，方便布局。浏览器渲染网页时也会把网页中的元素看成矩形区域，也可称之为盒子。
+                <div>
+                    <h3>盒子内容</h3>
+                    <div>
+                        CSS中规定每个盒子分别由：内容content、内边框padding、边框border、外边框margin（一般用来限定两个盒子直接的距离）构成
+                    </div>
+                    <div class="indent" style="margin: 50px;">
+                        <img src="盒子模型.png" alt="盒子模型示意图" style="height: 150px;">
+                    </div>
+                    <div class="boxDemoDiv">
+                        <span class="boxDemoSpan">盒子1</span>
+                        <span class="boxDemoSpan">盒子2</span>
+                    </div>
+                    <div>这里可以看到span的外边距只有左右</div>
+                    <div>content跟border不做赘述, margin跟padding类似也不做赘述</div>
+                    <hr>
+                    <h3>内边距padding(同时添加4个方向的内边距)</h3>
+                    <div>padding可以当做复合属性使用，在padding中顺时针上右下左设置最多四个值设置四个方向的padding</div>
+                    <div>
+                        若是三个值：上 左右 下；两个值：上下 左右, 即顺时针赋值，遇到空值则看对面的值
+                    </div>
+                    <br>
+                    <h3>css3特性：自动内减</h3>
+                    <div>设置属性box-sizing:border-box, 自动计算多余大小，自动在内容中减去</div>
+                    <h3>清楚默认内外边距</h3>
+                    <div>浏览器会默认给标签设置默认的margin和padding，但一般项目开始前需要清楚默认值，后续在类中自行设置：</div>
+                    <div>*{margin:0; padding:0;}</div>
+                    <h3>版心居中</h3>
+                    <div>margin:0 auto</div>
+                </div>
+            </div>
+            <div>
+                <h2>常见问题：</h2>
+                <div>
+                    <h3>外边距合并</h3>
+                    <div class="margin1">垂直布局的块级元素</div>
+                    <div class="margin2">上下margin会取两者margin的最大值</div>
+                    <h3>外边距塌陷</h3>
+                    <div>
+                        互相嵌套的块级元素，子元素的margin-top会导致
+                        <div class="marginTop">父元素的margin-Top也为设置的margin</div>
+                        <div>解决方法：
+                            <p>1. 清除浮动overflow: hidden</p>
+                            <p>2. 转成行内块 display: inline-block</p>
+                            <p>3. 设置浮动</p>
+                        </div>
+                    </div>
+                    <h3>行内元素的内外边距问题</h3>
+                    <div>
+                        若想通过margin或padding改变行内标签的位置，无法生效:
+                        行内标签的margin-top、margin-bottom、padding-top、padding-bottom不生效，因此需要用行高line-height改变垂直位置
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

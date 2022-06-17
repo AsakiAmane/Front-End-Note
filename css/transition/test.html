@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="fade-leave-active" style="box-shadow: inset 0 0 6px #48dbfb !important;width: 40px; height: 40px;">
+        test
+    </div>
+</body>
+
+<style type="text/css">
+    .fade-enter-active,
+    .fade-leave-active {
+        opacity: 0;
+    }
+    .fade-leave-active:hover {
+        opacity: 1;
+        transform: translateX(10px);
+
+    }
+    .fade-leave-active {
+        transition: transform .28s;
+    }
+</style>
+</html>

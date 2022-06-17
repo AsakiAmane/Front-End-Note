@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- css的写法，p为选择器 -->
+    <!-- <style>
+        /* 内嵌式 */
+        p {
+            /* 选择器用于找标签 */
+            /* 括号后是属性，分为属性名和属性值 */
+            color: cadetblue;
+            /* px是像素单位，最常用，一般css都要写px */
+            font-size: 30px;
+            background-color: blanchedalmond;
+            width: 400px;
+            height: 35px;
+        }
+    </style> -->
+    <!-- 外链式写法 -->
+    <!-- rel为关系属性，属性值为样式表 -->
+    <!-- <link rel="stylesheet" href="css/test.css"> -->
+    <style>
+        .brown {
+            color: brown;
+        }
+
+        .size30 {
+            font-size: 30px;
+        }
+
+        #idTest {
+            color: rgb(27, 141, 84);
+        }
+
+        * {
+            background-color: rgb(241, 234, 225);
+        }
+
+        .compact {
+            /* font-family: 楷体; */
+            font: 700 italic 30px 楷体;
+            /* font-family: 宋体; */
+            /* font复合属性必须指定字体大小和字体风格（宋体啥的）且两者的位置不能改变，否则不生效，其他随意，位置也随意 */
+            /* font-family: 楷体; */
+            /* 只能复合或者只能单干，否则下面单干的或者复合的会覆盖上一个的对应属性 */
+        }
+
+        .indent {
+            text-indent: 2em;
+        }
+
+        .align {
+            text-align: center;
+        }
+
+        .decoration {
+            text-decoration: underline;
+        }
+
+        .noneLine {
+            text-decoration: none;
+        }
+
+        .lineHeight {
+            font: italic 700 40px/2 楷体;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>CSS(Cascading style sheets 层叠样式表)</h1>
+    <p>作用：决定样式美观</p>
+    <p>像现在，由于css里指定了p的样式使用cadetblue这个颜色，这段p标签的内容全是指定的颜色</p>
+    <p>最简单的一种写法是内嵌式：写在位于head标签内，title标签下的style标签中</p>
+    <p>外链式：css单独写在一个css文件中，通过link标签在网页中引入</p>
+    <p>项目中一般用外链式，而配合js使用的情况采用行内式（使用概率很低），而小案例则可以是内嵌式</p>
+    <div style="color: chocolate;">
+        行内式：css写在标签的style属性中，一般配合JavaScript使用
+        <p>但如果是父标签中的子标签已经受link的css文件指定样式，则一般不受父标签的style影响</p>
+        <h6>h6为指定样式的div的子标签且link的css文件没指定样式，故不受影响</h6>
+        <h5 style="color:rgb(136, 78, 163)">子标签内style也是与父标签单独的</h5>
+        <p style="color: olive;">而如果link的css已经指定一个标签样式，但html文件中再在某个同种标签中指定样式，则会优先html的</p>
+    </div>
+    <hr>
+    <h2>选择器</h2>
+    <h3>标签选择器：</h3>
+    <p>标签名{属性}，如这个文件里的内嵌css，但是标签选择器会让所有同种标签都生效</p>
+    <h3>类选择器：</h3>
+    <p class="brown size30">.类名{属性}，然后在标签中标注该标签是什么类，注意：标签中的类不用带'.', 复杂的情况下一个标签可以有多个类名，类名之间用空格隔开</p>
+    <h3>id选择器：</h3>
+    <div id="idTest">#id{属性}，id初衷用于js，所以很少用来做样式, id类似身份证号码，一个标签只有一个id，一个选择器规定上只能选中一个标签</div>
+    <h3>通配符选择器：</h3>
+    <div>*{属性}，*代表全选, 一般只用于清楚默认的内外边距，如margin:0; padding:0;</div>
+    <hr>
+    <h2>字体和文本样式</h2>
+    <h3>字体样式：</h3>
+    <div>
+        <p>1. 字体大小 font-size；chrome默认文字大小为16px</p>
+        <p style="font-weight: 700;">2. 字体粗细 font-weight；常用normal和bold，也可以直接用整百数（一般常用，用400和700）, 可以留意到整数后不用单位</p>
+        <p style="font-style: italic;">3. 字体样式是否倾斜 font-style，默认值normal，倾斜为italic, 倾斜标签也有个是i</p>
+        <p style="font-family: 楷体, sans-serif;">4. 字体风格
+            font-family，属性值写字体，一般用默认的字体，微软是微软雅黑，苹果是苹方，两者都是无衬线字体,在font-family的设置中按属性值的先后确定优先级（sans-serif）</p>
+        <!-- 给同一个标签设置相同样式，如先后设置为red和blue，会选择blue，因为css叫层叠样式表，后设置的blue会叠在red之上 -->
+        <p class="compact">5. 复合属性简写：上述样式可以直接用font复合</p>
+    </div>
+    <h3>文本样式</h3>
+    <div>
+        <p class="indent">
+            1. 首行缩进
+            属性名：text-indent，一般用px和em（1em=当前标签的font-size大小，更常用）做单位，我超我超我超我超我超我超我超我超我超我超我超我超我超我超我超我超我超我超我超我超我超我超我超我超我超我超我超我超我超我超我超我超我超我超我超我超我超我超我超
+        </p>
+        <p class="align">
+            2. 文本首行对齐 属性名：text-align，left、center、right, 如果父元素对齐，那其子元素也对齐，比如：<br>
+            <img src="微信.png" alt="wechat_icon">
+        </p>
+        <p class="decoration">
+            3. 文本修饰 属性名：text-decoration，underline（常用）、line-through（不常用）、overline（几乎不用）、none（常用，用于清除超链接默认的下划线）<br>
+            <a href="#" class="noneLine">这是一个超链接,需要注意的是，这里的none其实生效了，但是因为文本修饰的这些横线是可以重叠的所以看不出none生效</a><br>
+            <a href="#" style="text-decoration: line-through;">比如这个超链接会同时有删除线和下划线</a>
+            <span style="text-decoration: overline;">这个还会有上划线</span>
+        </p>
+        <a href="#" class="noneLine">而这个超链接就没有下划线</a>
+    </div>
+    <h3>行高</h3>
+    <div>
+        <p class="lineHeight">属性名：line-height, 单位为px，也可以不带单位即当前font-size的倍数</p>
+        <p class="lineHeight">像这样能拉开间距</p>
+        <p>行高是上间距到下间距的距离，同时也可以放到font复合属性中</p>
+    </div>
+    <div style="width: 300px; height: 300px; background-color: pink; margin: 0 auto;">div水平居中</div>
+</body>
+
+</html>

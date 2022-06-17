@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .example {
+            text-indent: 2em;
+        }
+
+        .fake {
+            color: red;
+        }
+
+        .fake::before {
+            /* 需要留意的是content的设置要按照一定编程规范，比如用''或者""表示内容是字符串 */
+            content: "·";
+        }
+
+        .fake::after {
+            /* 转换成行内块之后会受到默认的margin的影响导致离远 */
+            content: " >";
+            width: 50px;
+            background-color: blanchedalmond;
+            display: inline-block;
+        }
+
+        .decoration>p:first-child {
+            /* 只选decoration的子代p中的第一个孩子 */
+            background-color: blanchedalmond;
+        }
+
+        .timeExample p:nth-child(-n+3) {
+            /* -n+3代表选中前三个p */
+            /* n+5代表5个后 */
+            color: blue;
+        }
+
+        /* ------------------------以下为浮动的代码-------------------------- */
+        .stdFlow1 {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+        }
+
+        .stdFlow2 {
+            width: 200px;
+            height: 200px;
+            background-color: wheat;
+        }
+
+        .divToInlineBlock {
+            display: inline-block;
+        }
+
+        .imgFloat {
+            float: left;
+        }
+
+        .stdFlow1Float {
+            float: left;
+            margin-top: 30px;
+            width: 100px;
+            height: 100px;
+            background-color: cadetblue;
+        }
+
+        .stdFlow2Float {
+            float: left;
+            width: 150px;
+            height: 150px;
+            background-color: wheat;
+        }
+
+        .box {
+            margin: 0 auto;
+            width: 250px;
+        }
+
+        .bottomBar {
+            height: 50px;
+            background-color: violet;
+        }
+
+        .clearFix::after {
+            /* 一般会集成在公共样式里 */
+            content: '';
+            /* 伪元素添加的是行内标签，因此需要转为块 */
+            display: block;
+            clear: both;
+            height: 0;
+            visibility: hidden;
+        }
+
+        /* css书写顺序：提高浏览器执行效率
+            1. 浮动/display/定位
+            2. 盒子模型：margin、border、padding、宽高背景色
+            3. 文字样式
+        */
+    </style>
+</head>
+
+<body>
+    <div>
+        <div>
+            <h1>结构伪类选择器</h1>
+            <hr>
+            <div>
+                <div class="decoration">
+                    <p>作用：根据元素在html中的结构关系查找元素</p>
+                    <p>优势：减少对html中类的依赖，保持代码整洁</p>
+                    <p>场景：常用于查找某父级中的子元素</p>
+                </div>
+                <hr>
+                <div class="timeExample">
+                    <p class="example">这个p因为不是decoration的孩子，因此不会被选中</p>
+                    <p>说明：</p>
+                    <p>E:nth-child(n){} 查找父元素中第n个（括号中定义n，n可以是公式比如2n代表2的倍数）且必须是e元素</p>
+                    <p>E:first/last-child{}</p>
+                    <p>E:nth-last-child(){}</p>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div>
+            <h1>伪元素</h1>
+            <hr>
+            <div>
+                <div>
+                    <p>作用：使用css模拟创建标签, 一般用于网页中不重要的装饰性的小图</p>
+                    <p class="example fake">这是p元素内容</p>
+                </div>
+                <hr>
+                <div>
+                    <p>种类：</p>
+                    <p>::before：在父元素内容的最前添加一个伪元素</p>
+                    <p>::after：在父元素内容的最后添加一个伪元素</p>
+                    <p>必须设置content属性才能生效，且伪元素默认为行内元素，类似于span</p>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div>
+            <h1>标准流</h1>
+            <hr>
+            <div>
+                <p>又称文件流，是浏览器渲染显示网页内容时缺省的排版规则，比如就算是没有设置margin且默认为0的行内块元素若html书写时两个元素的代码有换行，则会导致俩元素间有一个空格的距离,而这是不方便代码风格统一的。
+                </p>
+                <div class="stdFlow1 divToInlineBlock"></div>
+                <div class="stdFlow2 divToInlineBlock"></div>
+            </div>
+        </div>
+        <hr>
+        <div>
+            <h1>
+                <h1>浮动</h1>
+                <hr>
+                <div>
+                    <h2>浮动作用</h2>
+                    <div>
+                        <p>考虑像word的图片嵌入方式，实际上图文环绕也是浮动的早期用法，但现在一般用于网页布局，可以取消标准流中div的块元素特性甚至是行内块间的间距</p>
+                    </div>
+                    <!-- 图文环绕 -->
+                    <!-- <div>
+                        <img src="电话.png" alt="电话" class="imgFloat">
+                        这是文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+                    </div> -->
+                    <!-- 网页布局 -->
+                    <div>
+                        <div class="stdFlow1Float"></div>
+                        <div class="stdFlow2Float"></div>
+                        <div class="stdFlow1"></div>
+                    </div>
+                    <div>
+                        <h2>浮动特点</h2>
+                        <div>
+                            <p>1. 脱离标准流控制（脱标），在标准流中不占位置, 如上面其中一个不浮动时就会使不浮动的那个元素托底（注意，文字会环绕浮动元素）</p>
+                            <p>2. 浮动比标准流优先级高半个级别，可以覆盖标准流中的元素</p>
+                            <p>3. 下个浮动元素会在上个浮动元素后面左右浮动，如上面的stdFlow2Float会紧贴stdFlow2Float, 但非浮动元素依然在下</p>
+                            <p>注意：浮动的元素不能通过text-align:center或margin:0 auto居中</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h2>清楚浮动</h2>
+                        <div>
+                            <p>清楚浮动给别的标签带来的影响，比如浮动子元素不占环境会撑不开标准流的父元素</p>
+                        </div>
+                        <div>清除方法1：额外标签
+                            <p>在父元素的最后添加一个块级元素，并给该块级元素设置clear:both, 但会让html结构变得复杂</p>
+                        </div>
+                        <div>清除方法2：单/双伪元素清除法：双伪元素的::before可以用于解决外边距塌陷问题</div>
+                        <div>清除方法3：给父元素设置overflow: hidden;</div>
+
+                        <div class="box clearFix">
+                            <div class="stdFlow1Float"></div>
+                            <div class="stdFlow2Float"></div>
+                            <!-- <div class="clearFix"></div> -->
+                        </div>
+                        <div class="bottomBar"></div>
+                    </div>
+                </div>
+            </h1>
+        </div>
+    </div>
+</body>
+
+</html>
